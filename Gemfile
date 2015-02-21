@@ -13,6 +13,7 @@ gem 'spring',        group: :development
 gem 'foundation-rails'
 gem 'high_voltage'
 gem 'therubyracer', :platform=>:ruby
+gem 'traceroute'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
