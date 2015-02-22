@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+kantor_internetowy = Site.create(name:"kantor_internetowy", url: "https://internetowykantor.pl/")
+
+eur = Currency.create(name: "Euro")
+chf = Currency.create(name: "Swiss Frank")
+usd = Currency.create(name: "US Dollar")
+
+CurrencySite.create(site_id: kantor_internetowy.id, currency_id: eur.id, currency_class: "#waluta-EUR", buy_parsing_class:".kurs_kupna", sell_parsing_class:".kurs_sprzedazy")
+# CurrencySite.Create(site_id: kantor_internetowy.id, currency_id: chf.id, buy_parsing_class:".kurs_kupna", sell_parsing_class:".kurs_sprzedazy")
+# CurrencySite.Create(site_id: kantor_internetowy.id, currency_id: usd.id, buy_parsing_class:".kurs_kupna", sell_parsing_class:".kurs_sprzedazy")

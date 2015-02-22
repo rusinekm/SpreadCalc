@@ -10,8 +10,8 @@ class StatNode < ActiveRecord::Base
   private
 
   def assign_spread_and_net_values
-    spread = sell_value - buy_value
-    net_worth = sell_value - (spread/2)
+    self.spread_value = sell_value - buy_value
+    self.net_worth = sell_value - (spread_value/2)
   end
 
 

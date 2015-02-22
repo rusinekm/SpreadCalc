@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220122919) do
+ActiveRecord::Schema.define(version: 20150222230519) do
 
   create_table "currencies", force: true do |t|
     t.string   "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20150220122919) do
     t.string   "sell_parsing_class"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "currency_class"
+    t.string   "string"
   end
 
   create_table "sites", force: true do |t|
@@ -42,6 +44,8 @@ ActiveRecord::Schema.define(version: 20150220122919) do
     t.decimal  "net_worth"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "currency_id"
+    t.integer  "site_id"
   end
 
 end
