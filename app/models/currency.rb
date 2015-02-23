@@ -1,5 +1,5 @@
 class Currency < ActiveRecord::Base
-  
+
   validates :name, presence: true
 
   has_many :currency_sites
@@ -8,21 +8,44 @@ class Currency < ActiveRecord::Base
 
 
 
-  def best_buy_choice
-    Statnode.find(last_statistics).orderby(:buy_value).first
-  end
-
-  def best_sell_choice
-    Statnode.find(last_statistics).orderby(:sell_value).last
-  end
-
-  private
-  
-  def last_statistics
-    temp_array=[]
-    sites.each do |site|
-      temp_array += StatNode.where("site_id = #{site.id} AND currency_id = #{currency.id}").last.id
+  def current_buy_value
+    if last_statistics != [] then
+      StatNode.where(id: last_statistics).order(:buy_value).first.buy_value
+    else
+      "no data"
     end
-    temp_array
   end
+
+  def current_sell_value
+   if last_statistics != [] then
+    StatNode.where(id: last_statistics).order(:sell_value).last.sell_value
+  else
+    "no data"
+  end
+end
+
+def current_worth
+ if last_statistics != [] then
+  StatNode.where(id: last_statistics).order(:net_worth).last.net_worth
+else
+  "no data"
+end
+end
+
+def current_office
+  if last_statistics != [] then
+    StatNode.where(id: last_statistics).order(:buy_value).first.site.name
+  else
+    "no data"
+  end
+end
+
+def last_statistics
+  temp_array=[]
+  sites.each do |site|
+    temp_array << StatNode.where("site_id = #{site.id} AND currency_id = #{id}").last.id
+  end
+
+  temp_array
+end
 end

@@ -1,7 +1,7 @@
 Spreadcalc
 ================
 
-Idea of the app is to count spread values on few different sites and compare them, finding best actual and average sites for each currency. It is designed to add new data each 3h.
+Idea of the app is to count spread values on few different sites and compare them, finding best actual and average sites for each currency. It is designed to add new data automatically in even periods of time set before running the app.
 -------------
 
 This application requires:

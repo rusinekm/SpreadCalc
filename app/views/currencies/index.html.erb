@@ -1,0 +1,30 @@
+<h1>List of watched currencies. last updated</h1> <%= StatNode.last.created_at %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name of currency</th>
+      <th>buy value</th>
+      <th>sell value</th>
+      <th>net worth</th>
+      <th>best exchange office</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @currencies.each do |currency| %>
+      <tr>
+        <td><%= currency.name %></td>
+        <td><%= currency.current_buy_value %></td>
+        <td><%= currency.current_sell_value %></td>
+        <td><%= currency.current_worth %></td>
+        <td><%= currency.current_office %></td>
+         <td><%= StatNode.last.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
