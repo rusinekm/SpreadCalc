@@ -5,9 +5,10 @@
     <tr>
       <th>Name of currency</th>
       <th>buy value</th>
-      <th>sell value</th>
-      <th>net worth</th>
       <th>best exchange office</th>
+      <th>sell value</th>
+      <th>best exchange office</th>
+      <th>net worth</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -17,10 +18,13 @@
       <tr>
         <td><%= currency.name %></td>
         <td><%= currency.current_buy_value %></td>
+        <% buy_office = currency.current_buy_office %>
+        <td><%= link_to buy_office.name, buy_office.url %></td>
         <td><%= currency.current_sell_value %></td>
+        <% sell_office = currency.current_sell_office %>
+        <td><%= link_to sell_office.name, sell_office.url %></td>
         <td><%= currency.current_worth %></td>
-        <td><%= currency.current_office %></td>
-         <td><%= StatNode.last.id %></td>
+
       </tr>
     <% end %>
   </tbody>

@@ -10,23 +10,21 @@ class CurrencySite < ActiveRecord::Base
   def parse_buy_value
     set_buy_parsing_method
     execute_parsing_method
-    # page.css(currency_class).css(buy_parsing_class).text.gsub(",",".").to_f
   end
 
   def parse_sell_value   
-    set_buy_parsing_method
+    set_sell_parsing_method
     execute_parsing_method
-    # page.css(currency_class).css(sell_parsing_class).text.gsub(",",".").to_f
   end
 
   private
 
   def set_buy_parsing_method
-    eval("def execute_parsing_method; page = Nokogiri(open(site.url)); #{buy_parsing_class}; end;")
+    eval("def execute_parsing_method; page = Nokogiri(open(site.url)); page.#{buy_parsing_class}.text.gsub(',','.').to_f; end;")
   end
 
   def set_sell_parsing_method
-    eval("def execute_parsing_method; page = Nokogiri(open(site.url)); #{sell_parsing_class}; end;")
+    eval("def execute_parsing_method; page = Nokogiri(open(site.url)); page.#{sell_parsing_class}.text.gsub(',','.').to_f; end;")
   end
 
   def execute_parsing_method

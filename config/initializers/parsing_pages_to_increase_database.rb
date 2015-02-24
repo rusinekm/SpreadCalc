@@ -14,10 +14,10 @@ def statnode_creator
 end
 
 background_currency_data_parsing = Thread.new do 
-  sleep 15.seconds
-  sleep (DateTime.now - StatNode.last.created_at) if (StatNode.last && (DateTime.now - StatNode.last.created_at) <= 15.minutes)
+  sleep 15.seconds #used to wait for the server to start
+  # sleep (DateTime.now - StatNode.last.created_at) if (StatNode.last && (DateTime.now - StatNode.last.created_at) <= 5.minutes)
   while true do
     statnode_creator
-    sleep 15.minutes
+    sleep 5.minutes
   end
 end

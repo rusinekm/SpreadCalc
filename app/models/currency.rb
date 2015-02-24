@@ -32,13 +32,23 @@ else
 end
 end
 
-def current_office
+def current_buy_office
   if last_statistics != [] then
-    StatNode.where(id: last_statistics).order(:buy_value).first.site.name
+    StatNode.where(id: last_statistics).order(:buy_value).first.site
   else
     "no data"
   end
 end
+
+def current_sell_office
+  if last_statistics != [] then
+    StatNode.where(id: last_statistics).order(:sell_value).last.site
+  else
+    "no data"
+  end
+end
+
+private
 
 def last_statistics
   temp_array=[]
