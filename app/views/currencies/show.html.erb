@@ -1,0 +1,29 @@
+<h1>List of <%= @currency.name %> </h1> 
+last updated at: 
+<% if StatNode.last then %>
+  <%=StatNode.last.created_at %>
+<% else %> 
+  no data yet.
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>site name</th>
+      <th>buy value</th>
+      <th>sell value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @currency.sites.each do |site| %>
+      <tr>
+        <td><%= link_to site.name, site.url %></td>
+        <td><%= site.buy_value %></td>
+        <td><%= site.sell_value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "return to the main page", currencies_path %>
+<br>

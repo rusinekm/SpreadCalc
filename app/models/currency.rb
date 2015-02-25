@@ -8,54 +8,54 @@ class Currency < ActiveRecord::Base
 
 
 
-  def current_buy_value
-    if last_statistics != [] then
-      StatNode.where(id: last_statistics).order(:buy_value).first.buy_value
+  def current_buy_value(current_statistics)
+    if current_statistics != [] then
+      StatNode.where(id: current_statistics).order(:buy_value).first.buy_value
     else
       "no data"
     end
   end
 
-  def current_sell_value
-   if last_statistics != [] then
-    StatNode.where(id: last_statistics).order(:sell_value).last.sell_value
-  else
+  def current_sell_value(current_statistics)
+    if current_statistics != [] then
+      StatNode.where(id: current_statistics).order(:sell_value).last.sell_value
+    else
+      "no data"
+    end
+  end
+
+
+  def current_worth(current_statistics)
+    if current_statistics != [] then
+      StatNode.where(id: current_statistics).order(:net_worth).last.net_worth
+    else
     "no data"
-  end
-end
-
-def current_worth
- if last_statistics != [] then
-  StatNode.where(id: last_statistics).order(:net_worth).last.net_worth
-else
-  "no data"
-end
-end
-
-def current_buy_office
-  if last_statistics != [] then
-    StatNode.where(id: last_statistics).order(:buy_value).first.site
-  else
-    "no data"
-  end
-end
-
-def current_sell_office
-  if last_statistics != [] then
-    StatNode.where(id: last_statistics).order(:sell_value).last.site
-  else
-    "no data"
-  end
-end
-
-private
-
-def last_statistics
-  temp_array=[]
-  sites.each do |site|
-    temp_array << StatNode.where("site_id = #{site.id} AND currency_id = #{id}").last.id
+    end
   end
 
-  temp_array
-end
+  def current_buy_office(current_statistics)
+    if current_statistics != [] then
+      StatNode.where(id: current_statistics).order(:buy_value).first.site
+    else
+      false
+    end
+  end
+
+  def current_sell_office(current_statistics)
+    if current_statistics != [] then
+      StatNode.where(id: current_statistics).order(:sell_value).last.site
+    else
+      false
+    end
+  end
+
+  def last_statistics
+    temp_array=[]
+    sites.each do |site|
+      if StatNode.where("site_id = #{site.id} AND currency_id = #{id}") != [] then
+        temp_array << StatNode.where("site_id = #{site.id} AND currency_id = #{id}").last.id
+      end
+    end
+    temp_array
+  end
 end

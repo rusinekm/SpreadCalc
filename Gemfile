@@ -10,12 +10,13 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
-gem 'foundation-rails'
+gem 'foundation-rails', '5.4.3.1'
 gem 'high_voltage'
 gem 'therubyracer', :platform=>:ruby
-gem 'traceroute'
 gem 'nokogiri'
+gem 'draper'
 group :development do
+  gem 'traceroute'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'hub', :require=>nil

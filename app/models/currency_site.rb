@@ -1,4 +1,4 @@
-require 'open-uri'
+
 
 class CurrencySite < ActiveRecord::Base
 
@@ -7,28 +7,12 @@ class CurrencySite < ActiveRecord::Base
   belongs_to :currency
   belongs_to :site 
 
-  def parse_buy_value
-    set_buy_parsing_method
-    execute_parsing_method
+  def parse_buy_value(page)
+    eval("page.#{buy_parsing_class}.text.gsub(',','.').to_f;")
   end
 
-  def parse_sell_value   
-    set_sell_parsing_method
-    execute_parsing_method
-  end
-
-  private
-
-  def set_buy_parsing_method
-    eval("def execute_parsing_method; page = Nokogiri(open(site.url)); page.#{buy_parsing_class}.text.gsub(',','.').to_f; end;")
-  end
-
-  def set_sell_parsing_method
-    eval("def execute_parsing_method; page = Nokogiri(open(site.url)); page.#{sell_parsing_class}.text.gsub(',','.').to_f; end;")
-  end
-
-  def execute_parsing_method
-    # code here is written by eval
+  def parse_sell_value(page)
+    eval("page.#{sell_parsing_class}.text.gsub(',','.').to_f;")
   end
 end
  

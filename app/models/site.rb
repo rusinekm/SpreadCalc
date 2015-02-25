@@ -5,8 +5,19 @@ class Site < ActiveRecord::Base
   has_many :currencies, through: :currency_sites
   has_many :stat_nodes
 
-  def show_link_to_page
-    "<%= link_to #{name}, #{url}>"
+  def buy_value
+    if stat_nodes.last then
+      stat_nodes.last.buy_value
+    else
+      "no data yet"
+    end
   end
 
+  def sell_value
+    if stat_nodes.last then
+      stat_nodes.last.sell_value
+    else
+      "no data yet"
+    end
+  end
 end

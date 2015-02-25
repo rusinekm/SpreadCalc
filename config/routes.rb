@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-resources :sites
-resources :currencies
+resources :currencies, only: [:index, :show]
 root to: 'currencies#index'
 end
