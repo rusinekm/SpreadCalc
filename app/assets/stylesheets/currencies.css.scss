@@ -1,3 +1,46 @@
-// Place all the styles related to the currencies controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.btn {
+  display: inline-block;
+
+  padding: 0.3em;
+  margin-left: 2em;
+  margin-bottom: 0.3em;
+  border: solid 2px #fff;
+  border-radius: 1em;
+  font: bold 1em;
+  color: #fff;
+  background-color: #834; 
+  text-decoration: none;
+  clear: left; 
+  text-align: center;
+}
+
+.btn2 {
+position: static;
+  display: inline-block;
+  padding: 0.3em;
+  margin-left: 2em;
+  margin-bottom: 0.3em;
+  border: solid 2px #fff;
+  border-radius: 3em;
+  font: bold 1em;
+  color: #ddd;
+  background-color: #834;
+  text-decoration: none;
+  clear: left; 
+  text-align: center;
+}
+.table_content {
+  clear: left; 
+  text-align: center;
+}
+.table_header {
+  clear: left; 
+  text-align: center;
+}
+.updated_text {
+ font-size: 50%; 
+ text-align: right;
+}
+.wrapper {
+  text-align: center;
+}

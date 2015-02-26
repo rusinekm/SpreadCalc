@@ -7,6 +7,12 @@ class Currency < ActiveRecord::Base
   has_many :stat_nodes
 
 
+  def find_average_value
+    sum = 0
+    statnodes = Statnode.where(id: current_statistics)
+    statnodes.each {|node| sum = node.net_worth}
+    self.average_value = sum / statnodes.count
+  end
 
   def current_buy_value(current_statistics)
     if current_statistics != [] then

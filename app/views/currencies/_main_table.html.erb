@@ -1,0 +1,49 @@
+<table>
+  <thead>
+    <tr>
+      <th class="table_header">Name of currency</th>
+      <th class="table_header">buy value</th>
+      <th class="table_header">best exchange office</th>
+      <th class="table_header">sell value</th>
+      <th class="table_header">best exchange office</th>
+      <th class="table_header">net worth</th>
+      <th class="table_header">list of all exchange offices with provided currency</th>
+    </tr>
+  </thead>
+
+  <tbody >
+    <% currencies.each do |currency| %>
+    <span class="row">
+      <tr>
+        <% current_statistics = currency.last_statistics %>
+        <td class="table_content"><%= currency.name %></td>
+        <td class="table_content"><%= currency.current_buy_value(current_statistics) %></td>
+        <% buy_office = currency.current_buy_office(current_statistics) %>
+        <% if buy_office then %>
+          <td><div class="wrapper"><%= link_to buy_office.name, buy_office.url, class: "btn" %></div></td>
+        <% else %>
+          <td class="table_content"> no data </td>
+        <% end %>
+        <td class="table_content"><%= currency.current_sell_value(current_statistics) %></td>
+        <% sell_office = currency.current_sell_office(current_statistics) %>
+        <% if sell_office then %>
+          <td><div class="wrapper"><%= link_to sell_office.name, sell_office.url, class: "btn" %></div>
+          </td>
+        <% else %>
+          <td class="table_content"> no data </td>
+        <% end %>
+        <td class="table_content"><%= currency.current_worth(current_statistics) %></td>
+        <td class="table_content"><div class="wrapper">
+        <%= link_to "show all exchange offices", currency_path(currency), class: "btn2" %></div></td>
+      </tr>
+      </span>
+    <% end %>
+  </tbody>
+</table>
+<p class="small-12 columns, updated_text">last updated at: 
+<% if StatNode.last then %>
+  <%=StatNode.last.created_at %>
+<% else %> 
+  no data yet.
+<% end %>
+</p>

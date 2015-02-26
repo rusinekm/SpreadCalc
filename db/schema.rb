@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20150222230519) do
 
   create_table "currencies", force: true do |t|
     t.string   "name"
+    t.decimal  "average_value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
