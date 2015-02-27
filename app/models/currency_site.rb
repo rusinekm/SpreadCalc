@@ -5,7 +5,7 @@ class CurrencySite < ActiveRecord::Base
 
   validates :buy_parsing_class, :sell_parsing_class, presence: true
 
-  before_validation :checking_corectness_of_inputs, on: :create
+  before_validation :check_if_provided_css_is_numerical, on: :create
 
   belongs_to :currency
   belongs_to :site 

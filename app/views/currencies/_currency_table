@@ -6,13 +6,13 @@
       <th>sell value</th>
     </tr>
   </thead>
-
+  <% id_of_currency = currency.id %>
   <tbody>
     <% currency.sites.each do |site| %>
       <tr>
         <td><%= link_to site.name, site.url %></td>
-        <td><%= site.buy_value %></td>
-        <td><%= site.sell_value %></td>
+        <td><%= site.buy_value(id_of_currency) %></td>
+        <td><%= site.sell_value(id_of_currency) %></td>
       </tr>
     <% end %>
   </tbody>

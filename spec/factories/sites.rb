@@ -3,5 +3,4 @@ FactoryGirl.define do
     name "MyString"
 url "MyString"
   end
-
 end

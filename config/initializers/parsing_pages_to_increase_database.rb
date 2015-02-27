@@ -13,7 +13,8 @@ def statnode_creator
       StatNode.create(currency_id: current_currency_site.currency_id, site_id: current_currency_site.site_id, buy_value: buy_value, sell_value: sell_value)  
     end
  end
- find average_values
+ puts "teraz wrzucamy srednie"
+ find_average_values
 end
 
 def find_average_values
