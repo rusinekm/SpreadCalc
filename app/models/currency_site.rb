@@ -3,7 +3,7 @@
 require 'open-uri'
 class CurrencySite < ActiveRecord::Base
 
-  validates :buy_parsing_class, :sell_parsing_class, presence: true
+  validates :buy_parsing_css, :sell_parsing_css, presence: true
 
   before_validation :check_if_provided_css_is_numerical, on: :create
 
@@ -11,16 +11,16 @@ class CurrencySite < ActiveRecord::Base
   belongs_to :site 
 
   def parse_buy_value(page)
-    eval("page.#{buy_parsing_class}.text.gsub(',','.').to_f;")
+    eval("page.#{buy_parsing_css}.text.gsub(',','.').to_f;")
   end
 
   def parse_sell_value(page)
-    eval("page.#{sell_parsing_class}.text.gsub(',','.').to_f;")
+    eval("page.#{sell_parsing_css}.text.gsub(',','.').to_f;")
   end
 
   private
   def check_if_css_is_not_another_code
-    buy_parsing_class.split(' ').count == 1 && sell_parsing_class.split(' ').count == 1
+    buy_parsing_css.split(' ').count == 1 && sell_parsing_css.split(' ').count == 1
   end
 
   def check_if_provided_css_is_numerical

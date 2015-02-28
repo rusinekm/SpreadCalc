@@ -18,17 +18,17 @@ ActiveRecord::Schema.define(version: 20150222230519) do
     t.decimal  "average_value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "last_best_buy_statnode_id"
+    t.integer  "last_best_sell_statnode_id"
   end
 
   create_table "currency_sites", force: true do |t|
     t.integer  "currency_id"
     t.integer  "site_id"
-    t.string   "buy_parsing_class"
-    t.string   "sell_parsing_class"
+    t.string   "buy_parsing_css"
+    t.string   "sell_parsing_css"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "currency_class"
-    t.string   "string"
   end
 
   create_table "sites", force: true do |t|

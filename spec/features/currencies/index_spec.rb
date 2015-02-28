@@ -16,9 +16,9 @@ feature 'Root' do
     expect(page).to have_content 'List of watched currencies.'
   end
   scenario 'checking if links work properly' do
-    FactoryGirl.create(:currency)
+    currency = FactoryGirl.create(:currency)
     visit root_path
     click_link('show all exchange offices')
-    expect(page).to have_content 'site name'
+    expect(page).to have_content "List of #{currency.name}"
   end
 end

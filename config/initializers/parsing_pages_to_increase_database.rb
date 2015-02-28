@@ -12,17 +12,21 @@ def statnode_creator
       sell_value = current_currency_site.parse_sell_value(page)
       StatNode.create(currency_id: current_currency_site.currency_id, site_id: current_currency_site.site_id, buy_value: buy_value, sell_value: sell_value)  
     end
- end
- puts "teraz wrzucamy srednie"
+  end
  find_average_values
+ set_best_values
 end
 
 def find_average_values
   Currency.all.each {|currency| currency.find_average_value}
 end
 
+def set_best_values
+  Currency.all.each {|currency| currency.set_best_value}
+end
+  
 background_currency_data_parsing = Thread.new do 
-  sleep 15.seconds #used to wait for the server to start
+  # sleep 25.seconds #used to wait for the server to start
   if (StatNode.last && (DateTime.now - StatNode.last.created_at) <= 5.minutes) then
     sleep (DateTime.now - StatNode.last.created_at) 
   end

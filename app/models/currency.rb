@@ -17,9 +17,20 @@ class Currency < ActiveRecord::Base
     save
   end
 
+  def set_best_value
+    statnodes = last_statistics
+    puts statnodes
+    self.last_best_buy_statnode_id = current_buy_value(statnodes).id
+    puts last_best_buy_statnode_id = current_buy_value(statnodes).id
+    self.last_best_sell_statnode_id = current_sell_value(statnodes).id
+    save
+    puts last_best_sell_statnode_id
+  end
+
   def current_buy_value(current_statistics)
     if current_statistics != [] then
-      StatNode.where(id: current_statistics).order(:buy_value).first.buy_value
+      puts StatNode.where(id: current_statistics).order(:buy_value).first
+      StatNode.where(id: current_statistics).order(:buy_value).first
     else
       "no data"
     end
@@ -27,7 +38,7 @@ class Currency < ActiveRecord::Base
 
   def current_sell_value(current_statistics)
     if current_statistics != [] then
-      StatNode.where(id: current_statistics).order(:sell_value).last.sell_value
+      StatNode.where(id: current_statistics).order(:sell_value).last
     else
       "no data"
     end

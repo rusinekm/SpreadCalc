@@ -5,7 +5,8 @@ class CreateStatNodes < ActiveRecord::Migration
       t.decimal :buy_value
       t.decimal :spread_value
       t.decimal :net_worth
-
+      t.integer :site_id
+      t.integer :currency_id
       t.timestamps
     end
   end

@@ -17,16 +17,25 @@
       <tr>
         <% current_statistics = currency.last_statistics %>
         <td class="table_content"><%= currency.name %></td>
-        <td class="table_content"><%= currency.current_buy_value(current_statistics) %></td>
-        <% buy_office = currency.current_buy_office(current_statistics) %>
-        <% if buy_office then %>
+        <td class="table_content"><% if StatNode.find(currency.last_best_buy_statnode_id) then %>
+          <%= StatNode.find(currency.last_best_buy_statnode_id).buy_value %>
+        <% else %>
+        no data
+        <% end %> </td>
+        <% if StatNode.find(currency.last_best_buy_statnode_id) then %>
+          <% buy_office = StatNode.find(currency.last_best_buy_statnode_id).site %>
           <td><div class="wrapper"><%= link_to buy_office.name, buy_office.url, class: "btn" %></div></td>
         <% else %>
           <td class="table_content"> no data </td>
         <% end %>
-        <td class="table_content"><%= currency.current_sell_value(current_statistics) %></td>
-        <% sell_office = currency.current_sell_office(current_statistics) %>
-        <% if sell_office then %>
+
+        <td class="table_content"> <% if StatNode.find(currency.last_best_sell_statnode_id) then %>
+        <%= StatNode.find(currency.last_best_sell_statnode_id).sell_value %>
+        <% else %>
+        no data
+        <% end %></td>
+        <% if StatNode.find(currency.last_best_sell_statnode_id) then %>
+        <% sell_office = StatNode.find(currency.last_best_sell_statnode_id).site %>        
           <td><div class="wrapper"><%= link_to sell_office.name, sell_office.url, class: "btn" %></div>
           </td>
         <% else %>

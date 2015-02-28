@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :site do
     name "MyString"
-url "MyString"
+url "http://www.kantor.pl/"
   end
 end
