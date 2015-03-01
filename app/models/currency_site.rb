@@ -1,9 +1,7 @@
-
-
 require 'open-uri'
 class CurrencySite < ActiveRecord::Base
 
-  validates :buy_parsing_css, :sell_parsing_css, presence: true
+  validates :site_id, :currency_id, :buy_parsing_css, :sell_parsing_css, presence: true
 
   before_validation :check_if_provided_css_is_numerical, on: :create
 

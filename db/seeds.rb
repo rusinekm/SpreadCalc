@@ -1,16 +1,20 @@
 #site seeds
-kantor_internetowy = Site.create(name:"kantor internetowy", url: "https://internetowykantor.pl/")
-cinkciarz = Site.create(name: "cinkciarz.pl", url: "https://cinkciarz.pl")
-kantor_pl = Site.create(name: "kantor.pl", url: "http://www.kantor.pl/")
-kantorwarszawa = Site.create(name: "kantor Warszawa", url: "http://www.kantorwarszawa.pl/")
-pewnykantor = Site.create(name: "pewny kantor", url: "https://pewnykantor.pl/")
-kantor77 = Site.create(name: "kantor 77", url: "https://kantor77.pl/")
-monero = Site.create(name: "monero.pl", url: "https://monero.pl/")
-lider_walut = Site.create(name: "lider walut", url: "https://liderwalut.pl/")
-kantor_max = Site.create(name: "internetowy kantor MAX", url: "https://internetowykantormax.pl/")
-kantor_darex = Site.create(name: "kantor Darex", url: "https://www.kantordarex.pl")
-meritum_bank = Site.create(name: "Meritum bank", url: "http://meritumbank.pl/finanse_osobiste/e-kantor/e-kantor.html")
-kantoria_pl = Site.create(name: "kantoria.pl", url: "https://www.kantoria.com/")
+kantor_internetowy = Site.create(name:"Kantor Internetowy", url: "https://internetowykantor.pl/")
+cinkciarz = Site.create(name: "Cinkciarz.pl", url: "https://cinkciarz.pl")
+kantor_pl = Site.create(name: "Kantor.pl", url: "http://www.kantor.pl/")
+kantorwarszawa = Site.create(name: "Kantor Warszawa", url: "http://www.kantorwarszawa.pl/")
+pewnykantor = Site.create(name: "Pewny Kantor", url: "https://pewnykantor.pl/")
+kantor77 = Site.create(name: "Kantor 77", url: "https://kantor77.pl/")
+monero = Site.create(name: "Monero.pl", url: "https://monero.pl/")
+lider_walut = Site.create(name: "Lider Walut", url: "https://liderwalut.pl/")
+kantor_max = Site.create(name: "Internetowy Kantor MAX", url: "https://internetowykantormax.pl/")
+kantor_darex = Site.create(name: "Kantor Darex", url: "https://www.kantordarex.pl")
+meritum_bank = Site.create(name: "Meritum Bank", url: "http://meritumbank.pl/finanse_osobiste/e-kantor/e-kantor.html")
+kantoria_pl = Site.create(name: "Kantoria.pl", url: "https://www.kantoria.com/")
+konik_online = Site.create(name: "Konik Online", url: "https://www.konik-online.pl/")
+inkantor = Site.create(name: "inKantor", url: "https://www.inkantor.pl/")
+walutobox = Site.create(name: "Walutobox", url: "https://www.walutobox.pl/")
+dobry_kantor = Site.create(name: "Dobry Kantor", url: "https://www.dobrykantor.pl/")
 
 # currency seeds
 eur = Currency.create(name: "Euro")
@@ -89,3 +93,27 @@ CurrencySite.create(site_id: kantoria_pl.id, currency_id: eur.id, buy_parsing_cs
 CurrencySite.create(site_id: kantoria_pl.id, currency_id: chf.id, buy_parsing_css:"css('.chf')[0].parent.css('.value')[0].text", sell_parsing_css:"css('.chf')[0].parent.css('.value')[1].text")
 CurrencySite.create(site_id: kantoria_pl.id, currency_id: usd.id, buy_parsing_css:"css('.usd')[0].parent.css('.value')[0].text", sell_parsing_css:"css('.usd')[0].parent.css('.value')[1].text")
 CurrencySite.create(site_id: kantoria_pl.id, currency_id: gbp.id, buy_parsing_css:"css('.gbp')[0].parent.css('.value')[0].text", sell_parsing_css:"css('.gbp')[0].parent.css('.value')[1].text")
+
+#seeds for konik online site
+CurrencySite.create(site_id: konik_online.id, currency_id: eur.id, buy_parsing_css:"css('#CurrencyRow_3').css('.large_currency_table_value')[0].text", sell_parsing_css:"css('#CurrencyRow_3').css('.large_currency_table_value')[1].text")
+CurrencySite.create(site_id: konik_online.id, currency_id: chf.id, buy_parsing_css:"css('#CurrencyRow_2').css('.large_currency_table_value')[0].text", sell_parsing_css:"css('#CurrencyRow_2').css('.large_currency_table_value')[1].text")
+CurrencySite.create(site_id: konik_online.id, currency_id: usd.id, buy_parsing_css:"css('#CurrencyRow_5').css('.large_currency_table_value')[0].text", sell_parsing_css:"css('#CurrencyRow_5').css('.large_currency_table_value')[1].text")
+CurrencySite.create(site_id: konik_online.id, currency_id: gbp.id, buy_parsing_css:"css('#CurrencyRow_4').css('.large_currency_table_value')[0].text", sell_parsing_css:"css('#CurrencyRow_4').css('.large_currency_table_value')[1].text")
+
+#seed for inkantor site
+CurrencySite.create(site_id: inkantor.id, currency_id: eur.id, buy_parsing_css:"css('tr[data-currency-pair=\"EUR/PLN\"]').css('.buy').text", sell_parsing_css:"css('tr[data-currency-pair=\"EUR/PLN\"]').css('.sell').text")
+CurrencySite.create(site_id: inkantor.id, currency_id: chf.id, buy_parsing_css:"css('tr[data-currency-pair=\"CHF/PLN\"]').css('.buy').text", sell_parsing_css:"css('tr[data-currency-pair=\"CHF/PLN\"]').css('.sell').text")
+CurrencySite.create(site_id: inkantor.id, currency_id: usd.id, buy_parsing_css:"css('tr[data-currency-pair=\"USD/PLN\"]').css('.buy').text", sell_parsing_css:"css('tr[data-currency-pair=\"USD/PLN\"]').css('.sell').text")
+CurrencySite.create(site_id: inkantor.id, currency_id: gbp.id, buy_parsing_css:"css('tr[data-currency-pair=\"GBP/PLN\"]').css('.buy').text", sell_parsing_css:"css('tr[data-currency-pair=\"GBP/PLN\"]').css('.sell').text")
+
+#seeds for walutobox site
+CurrencySite.create(site_id: walutobox.id, currency_id: eur.id, buy_parsing_css:"css('#EUR_buy').css('a').text", sell_parsing_css:"css('#EUR_sell').css('a').text")
+CurrencySite.create(site_id: walutobox.id, currency_id: chf.id, buy_parsing_css:"css('#CHF_buy').css('a').text", sell_parsing_css:"css('#CHF_sell').css('a').text")
+CurrencySite.create(site_id: walutobox.id, currency_id: usd.id, buy_parsing_css:"css('#USD_buy').css('a').text", sell_parsing_css:"css('#USD_sell').css('a').text")
+CurrencySite.create(site_id: walutobox.id, currency_id: gbp.id, buy_parsing_css:"css('#GBP_buy').css('a').text", sell_parsing_css:"css('#GBP_sell').css('a').text")
+
+#seeds for dobry kantor site
+CurrencySite.create(site_id: dobry_kantor.id, currency_id: eur.id, buy_parsing_css:"css('img[title=\"Euro\"]')[0].parent.parent.css('.small_currency_table_value')[0].text", sell_parsing_css:"css('img[title=\"Euro\"]')[0].parent.parent.css('.small_currency_table_value')[1].text")
+CurrencySite.create(site_id: dobry_kantor.id, currency_id: chf.id, buy_parsing_css:"css('img[title=\"Frank szwajcarski\"]')[0].parent.parent.css('.small_currency_table_value')[0].text", sell_parsing_css:"css('img[title=\"Frank szwajcarski\"]')[0].parent.parent.css('.small_currency_table_value')[1].text")
+CurrencySite.create(site_id: dobry_kantor.id, currency_id: usd.id, buy_parsing_css:"css('img[title=\"Dolar amerykański\"]')[0].parent.parent.css('.small_currency_table_value')[0].text", sell_parsing_css:"css('img[title=\"Dolar amerykański\"]')[0].parent.parent.css('.small_currency_table_value')[1].text")
+CurrencySite.create(site_id: dobry_kantor.id, currency_id: gbp.id, buy_parsing_css:"css('img[title=\"Funt szterling\"]')[0].parent.parent.css('.small_currency_table_value')[0].text", sell_parsing_css:"css('img[title=\"Funt szterling\"]')[0].parent.parent.css('.small_currency_table_value')[1].text")
