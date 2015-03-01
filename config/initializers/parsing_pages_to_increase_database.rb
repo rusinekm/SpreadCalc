@@ -1,8 +1,8 @@
 require 'open-uri'
-ActiveRecord::Currency.establish_connection Rails.env
-ActiveRecord::CurrencySite.establish_connection Rails.env
-ActiveRecord::Site.establish_connection Rails.env
-ActiveRecord::StatNode.establish_connection Rails.env
+Currency.establish_connection 
+CurrencySite.establish_connection 
+Site.establish_connection
+StatNode.establish_connection
 
 def statnode_creator
   Site.all.each do |current_site| 
@@ -26,9 +26,9 @@ def set_best_values
 end
   
 background_currency_data_parsing = Thread.new do 
-  # sleep 25.seconds #used to wait for the server to start
-  if (StatNode.last && (DateTime.now - StatNode.last.created_at) <= 5.minutes) then
-    sleep (DateTime.now - StatNode.last.created_at) 
+  # sleep 55.seconds #used to wait for the server to start
+  if (StatNode.last && (Time.now - StatNode.last.created_at) <= 5.minutes) then
+    sleep (5.minutes - (Time.now - StatNode.last.created_at))
   end
   while true do
     statnode_creator

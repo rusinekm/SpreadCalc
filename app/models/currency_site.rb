@@ -11,11 +11,11 @@ class CurrencySite < ActiveRecord::Base
   belongs_to :site 
 
   def parse_buy_value(page)
-    eval("page.#{buy_parsing_css}.text.gsub(',','.').to_f;")
+    eval("page.#{buy_parsing_css}.gsub(',','.').to_f;")
   end
 
   def parse_sell_value(page)
-    eval("page.#{sell_parsing_css}.text.gsub(',','.').to_f;")
+    eval("page.#{sell_parsing_css}.gsub(',','.').to_f;")
   end
 
   private
