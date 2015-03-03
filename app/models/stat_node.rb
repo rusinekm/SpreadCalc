@@ -11,6 +11,14 @@ class StatNode < ActiveRecord::Base
 
   private
 
+  def self.time_of_last_node
+    if StatNode.last then
+      StatNode.last.created_at
+    else 
+      "no data yet."
+    end
+  end
+
   def check_if_sell_value_is_greater_than_buy_value
     sell_value > buy_value
   end

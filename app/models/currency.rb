@@ -6,6 +6,13 @@ class Currency < ActiveRecord::Base
   has_many :sites, through: :currency_sites
   has_many :stat_nodes
 
+  def last_best_buy_statnode
+    StatNode.find(last_best_buy_statnode_id)
+  end
+
+  def last_best_sell_statnode
+    StatNode.find(last_best_sell_statnode_id)
+  end
 
   def find_average_value
     sum = 0

@@ -6,21 +6,16 @@
       <th>sell value</th>
     </tr>
   </thead>
-  <% id_of_currency = currency.id %>
   <tbody>
     <% currency.sites.each do |site| %>
       <tr>
         <td><%= link_to site.name, site.url %></td>
-        <td><%= site.buy_value(id_of_currency) %></td>
-        <td><%= site.sell_value(id_of_currency) %></td>
+        <td><%= site.buy_value(currency.id) %></td>
+        <td><%= site.sell_value(currency.id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <p class="small-12 columns, updated_text">last updated at: 
-<% if StatNode.last then %>
-  <%=StatNode.last.created_at %>
-<% else %> 
-  no data yet.
-<% end %>
+  <%=StatNode.time_of_last_node %>
 </p>

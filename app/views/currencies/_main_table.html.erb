@@ -15,18 +15,18 @@
     <% currencies.each do |currency| %>
       <tr>
         <td class="table_content"><%= currency.name %></td>
-        <% if currency.last_best_buy_statnode_id && StatNode.find(currency.last_best_buy_statnode_id) then %>
-          <td class="table_content"><%= StatNode.find(currency.last_best_buy_statnode_id).buy_value %></td>
-          <% buy_office = StatNode.find(currency.last_best_buy_statnode_id).site %>
+        <% if currency.last_best_buy_statnode_id && currency.last_best_buy_statnode then %>
+          <td class="table_content"><%= currency.last_best_buy_statnode.buy_value %></td>
+          <% buy_office = currency.last_best_buy_statnode.site %>
           <td><div class="wrapper"><%= link_to buy_office.name, buy_office.url, class: "btn" %></div></td>
         
         <% else %>
           <td class="table_content"> no data </td>
           <td class="table_content"> no data </td>
         <% end %> 
-        <% if currency.last_best_sell_statnode_id && StatNode.find(currency.last_best_sell_statnode_id) then %>
-          <td class="table_content"><%=  StatNode.find(currency.last_best_sell_statnode_id).sell_value %></td>
-          <% sell_office = StatNode.find(currency.last_best_sell_statnode_id).site %>        
+        <% if currency.last_best_sell_statnode_id && currency.last_best_sell_statnode then %>
+          <td class="table_content"><%=  currency.last_best_sell_statnode.sell_value %></td>
+          <% sell_office = currency.last_best_sell_statnode.site %>        
           <td><div class="wrapper"><%= link_to sell_office.name, sell_office.url, class: "btn" %></div>
           </td>
         <% else %>
@@ -41,9 +41,5 @@
   </tbody>
 </table>
 <p class="small-12 columns, updated_text">last updated at: 
-<% if StatNode.last then %>
-  <%=StatNode.last.created_at %>
-<% else %> 
-  no data yet.
-<% end %>
+  <%=StatNode.time_of_last_node %>
 </p>
