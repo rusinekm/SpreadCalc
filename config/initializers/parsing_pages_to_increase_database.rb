@@ -8,16 +8,17 @@ def statnode_creator
   Site.all.each do |current_site| 
     # parsing_page = Thread.new do
       page = Nokogiri(open(current_site.url))
-        current_site.currency_sites.each do |current_currency_site|
-          buy_value = current_currency_site.parse_buy_value(page)
-          sell_value = current_currency_site.parse_sell_value(page)
-          StatNode.create(currency_id: current_currency_site.currency_id, site_id: current_currency_site.site_id, buy_value: buy_value, sell_value: sell_value)  
+      current_site.currency_sites.each do |current_currency_site|
+        StatNode.create(currency_id: current_currency_site.currency_id, site_id: current_currency_site.site_id, buy_value: current_currency_site.parse_buy_value(page), sell_value: current_currency_site.parse_sell_value(page))  
       end
     # end
   end
-
- find_average_values
- set_best_values
+  #parsing_page.join
+  # assigning_values_to_currencies = Thread.new do
+    find_average_values
+    set_best_values
+  # end
+  # assigning_values_to_currencies.join
 end
 
 def find_average_values

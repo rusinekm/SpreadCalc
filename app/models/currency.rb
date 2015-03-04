@@ -2,7 +2,7 @@ class Currency < ActiveRecord::Base
 
   validates :name, presence: true
 
-  has_many :currency_sites
+  has_many :currency_sites, dependent: :destroy
   has_many :sites, through: :currency_sites
   has_many :stat_nodes
 
@@ -34,8 +34,8 @@ class Currency < ActiveRecord::Base
   def last_statistics
     temp_array=[]
     sites.each do |site|
-      if StatNode.where("site_id = #{site.id} AND currency_id = #{id}") != [] then
-        temp_array << StatNode.where("site_id = #{site.id} AND currency_id = #{id}").last.id
+      if stat_nodes.where(site_id: site.id) != [] then
+        temp_array << stat_nodes.where(site_id: site.id).last.id
       end
     end
     temp_array
