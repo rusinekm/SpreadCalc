@@ -1,6 +1,8 @@
 require 'open-uri'
 class CurrencySite < ActiveRecord::Base
 
+  attr_accessor :currency_name
+
   validates :site_id, :currency_id, :buy_parsing_css, :sell_parsing_css, presence: true
 
   before_validation :checking_corectness_of_inputs, on: :create
@@ -14,6 +16,10 @@ class CurrencySite < ActiveRecord::Base
 
   def parse_sell_value(page)
     eval("page.#{sell_parsing_css}.gsub(',','.').to_f;")
+  end
+
+  def self.such_connection_exists?(site_id, currency_id)
+    !(CurrencySite.where("site_id = #{site_id} AND currency_id = #{currency_id}") == [])
   end
 
   private

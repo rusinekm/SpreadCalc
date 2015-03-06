@@ -1,0 +1,33 @@
+<div class="currencu_site_form">
+  <%= form_for(currency_site) do |f| %>
+  <% if currency_site.errors.any? %>
+  <div id="error_explanation">
+  <h2><%= pluralize(@currency_site.errors.count, "error") %> prohibited this currency from being saved:</h2>
+    <ul>
+      <% currency_site.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :site_id %>
+    <%= f.collection_select :site_id, Site.order(:id),:id,:name, include_blank: false %>
+  </div>
+  <div class="field">
+    <%= f.label "Name of watched currency" %><br>
+    <%= f.text_area :currency_name %>
+  </div> 
+  <div class="field">
+    <%= f.label :buy_parsing_css %><br>
+    <%= f.text_area :buy_parsing_css %>
+  </div>
+  <div class="field">
+    <%= f.label :sell_parsing_css %><br>
+    <%= f.text_area :sell_parsing_css %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
+</div>

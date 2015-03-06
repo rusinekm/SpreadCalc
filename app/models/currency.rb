@@ -41,6 +41,16 @@ class Currency < ActiveRecord::Base
     temp_array
   end
 
+  def self.find_currency_id(currency_name)
+    Currency.all.each do |currency|
+      if currency.name == currency_name then
+        return currency.id
+      end
+    end
+    currency = Currency.create(name: currency_name)
+    currency.id
+  end
+
   private 
 
   def current_buy_value(current_statistics)
