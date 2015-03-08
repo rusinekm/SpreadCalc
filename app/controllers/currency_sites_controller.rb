@@ -21,6 +21,10 @@ class CurrencySitesController < ApplicationController
   end
 
   def destroy
+    currency_id = CurrencySite.find(params[:id]).currency_id
+    CurrencySite.find(params[:id]).destroy
+    Currency.find(currency_id).destroy_if_empty
+    redirect_to currencies_path, notice: 'Currency is no longer watched on this site.'
   end
 
   private

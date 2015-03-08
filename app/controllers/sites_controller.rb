@@ -1,5 +1,8 @@
 class SitesController < ApplicationController
 
+  def index
+    @sites = Site.all
+  end
   def new
     @site = Site.new
   end
@@ -14,6 +17,8 @@ class SitesController < ApplicationController
   end
 
   def destroy
+    Site.find(params[:id]).destroy
+    redirect_to currencies_path, notice: 'Site is no longer watched.'     
   end
 
   private

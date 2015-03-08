@@ -1,0 +1,9 @@
+Site name: <%= site.name %>, 
+<%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %>
+<ul>
+  <% site.currency_sites.each do |currency_site| %>
+    <li> <%= currency_site.currency.name %>
+      <%= link_to 'Destroy', currency_site, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>

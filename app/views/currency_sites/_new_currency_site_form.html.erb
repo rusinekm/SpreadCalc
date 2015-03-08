@@ -15,7 +15,7 @@
     <%= f.collection_select :site_id, Site.order(:id),:id,:name, include_blank: false %>
   </div>
   <div class="field">
-    <%= f.label "Name of watched currency" %><br>
+    <%= f.label "Name of watched currency (please type full name instead of abbreviation)" %><br>
     <%= f.text_area :currency_name %>
   </div> 
   <div class="field">

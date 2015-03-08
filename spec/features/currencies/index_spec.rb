@@ -19,6 +19,6 @@ feature 'Root' do
     currency = FactoryGirl.create(:currency)
     visit root_path
     click_link('show all exchange offices')
-    expect(page).to have_content "List of #{currency.name}"
+    expect(page).to have_content  "List of current #{currency.name} exchange deals"
   end
 end

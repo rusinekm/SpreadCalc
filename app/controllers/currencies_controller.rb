@@ -1,27 +1,16 @@
 class CurrenciesController < ApplicationController
 
   def index
+    Currency.all.each do |currency| 
+      statnodes = currency.last_statistics
+      currency.find_average_value(statnodes)
+      currency.set_best_value(statnodes)
+    end
     @currencies = Currency.all
   end
 
   def show
     @currency = Currency.find(params[:id])
-  end
-
-  def new
-    @currency = Currency.new
-  end
-
-  def create
-    @currency = Currency.new(currency_params)
-    if @currency.save
-      redirect_to currencies_path
-    else
-      render :new
-    end
-  end
-
-  def destroy
   end
 
   private

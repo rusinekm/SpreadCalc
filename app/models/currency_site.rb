@@ -7,6 +7,8 @@ class CurrencySite < ActiveRecord::Base
 
   before_validation :checking_corectness_of_inputs, on: :create
 
+  before_destroy :destroy_appropriate_stat_nodes
+
   belongs_to :currency
   belongs_to :site 
 
@@ -56,6 +58,10 @@ class CurrencySite < ActiveRecord::Base
   def checking_corectness_of_inputs
     page = Nokogiri(open(site.url))
     check_if_css_is_not_another_code(page) && check_if_provided_css_is_numerical(page)
+  end
+
+  def destroy_appropriate_stat_nodes
+    StatNode.delete_all(currency_id: currency_id, site_id: site_id)
   end
 end
  

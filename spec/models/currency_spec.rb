@@ -45,7 +45,7 @@ RSpec.describe Currency, type: :model do
       FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site1.id, sell_value: "3", buy_value: "1")
       FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site2.id, sell_value: "4", buy_value: "2")
       FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site3.id, sell_value: "5", buy_value: "3")
-      currency.find_average_value
+      currency.find_average_value(currency.last_statistics)
 
       expect(currency.average_value).to eq ((2+3+4)/3)
     end
@@ -54,7 +54,7 @@ RSpec.describe Currency, type: :model do
       statnode1 = FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site1.id, sell_value: "3", buy_value: "1")
       statnode2 = FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site2.id, sell_value: "4", buy_value: "2")
       statnode3 = FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site3.id, sell_value: "5", buy_value: "3")
-      currency.set_best_value
+      currency.set_best_value(currency.last_statistics)
         expect(currency.last_best_buy_statnode_id).to eq (statnode1.id)
         expect(currency.last_best_sell_statnode_id).to eq (statnode3.id)
     end

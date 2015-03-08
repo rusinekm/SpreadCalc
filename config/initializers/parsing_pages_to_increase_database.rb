@@ -15,8 +15,8 @@ def statnode_creator
   end
   #parsing_page.join
   # assigning_values_to_currencies = Thread.new do
-    find_average_values
-    set_best_values
+    # find_average_values
+    # set_best_values
   # end
   # assigning_values_to_currencies.join
 end
