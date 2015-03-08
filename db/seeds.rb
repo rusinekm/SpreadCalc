@@ -1,3 +1,5 @@
+Admin.create(email:"admin@admin.com", password: "adminadmin", password_confirmation:"adminadmin")
+
 #site seeds
 kantor_internetowy = Site.create(name:"Kantor Internetowy", url: "https://internetowykantor.pl/")
 cinkciarz = Site.create(name: "Cinkciarz.pl", url: "https://cinkciarz.pl")

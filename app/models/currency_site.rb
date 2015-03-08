@@ -56,6 +56,7 @@ class CurrencySite < ActiveRecord::Base
   end
 
   def checking_corectness_of_inputs
+    print "."
     page = Nokogiri(open(site.url))
     check_if_css_is_not_another_code(page) && check_if_provided_css_is_numerical(page)
   end

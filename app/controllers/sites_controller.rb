@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-
+  before_action :authenticate_admin!
   def index
     @sites = Site.all
   end

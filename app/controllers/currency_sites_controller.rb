@@ -1,5 +1,6 @@
 class CurrencySitesController < ApplicationController
-
+  before_action :authenticate_admin!
+  
   def new
     @currency_site = CurrencySite.new
   end
@@ -21,6 +22,7 @@ class CurrencySitesController < ApplicationController
   end
 
   def destroy
+
     currency_id = CurrencySite.find(params[:id]).currency_id
     CurrencySite.find(params[:id]).destroy
     Currency.find(currency_id).destroy_if_empty

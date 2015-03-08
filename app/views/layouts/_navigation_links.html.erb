@@ -1,4 +1,15 @@
 <%# add navigation links to this file %>
+<% if admin_signed_in? %>
   <li class="name"><%= link_to 'New watched site', new_site_path %></li>
   <li class="name"><%= link_to 'New watched currency for a site', new_currency_site_path %></li>
   <li class="name"><%= link_to 'Delete sites or currencies for sites', sites_path %></li>
+<% end %>
+
+<% if admin_signed_in? %>
+  <span class="log_in small-push-3">
+  <li class="name admin_name"> <%= "logged as #{current_admin.email}" %>
+  <li class="name"><%= link_to "log out", destroy_admin_session_path, method: :delete %></li>
+  </span>
+<% else %>
+  <li class="name log_out small-push-10"><%= link_to "log in", new_admin_session_path %></li>
+<% end %>
