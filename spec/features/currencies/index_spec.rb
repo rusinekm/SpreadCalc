@@ -1,8 +1,4 @@
 require 'spec_helper'
-# Feature: Home page
-#   As a visitor
-#   I want to visit a home page
-#   So I can learn more about the website
 
 feature 'Root' do
 
@@ -15,6 +11,7 @@ feature 'Root' do
     visit root_path
     expect(page).to have_content 'List of watched currencies.'
   end
+
   scenario 'checking if links work properly' do
     currency = FactoryGirl.create(:currency)
     visit root_path
@@ -22,3 +19,4 @@ feature 'Root' do
     expect(page).to have_content  "List of current #{currency.name} exchange deals"
   end
 end
+

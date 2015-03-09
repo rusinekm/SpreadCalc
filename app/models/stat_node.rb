@@ -9,6 +9,10 @@ class StatNode < ActiveRecord::Base
   belongs_to :site
   belongs_to :currency
 
+  def self.delete_stat_nodes_older_than_day
+    StatNode.delete_all(["created_at < ?", 1.day.ago])
+  end
+
   private
 
   def self.time_of_last_node

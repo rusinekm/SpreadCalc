@@ -119,3 +119,6 @@ CurrencySite.create(site_id: dobry_kantor.id, currency_id: eur.id, buy_parsing_c
 CurrencySite.create(site_id: dobry_kantor.id, currency_id: chf.id, buy_parsing_css:"css('img[title=\"Frank szwajcarski\"]')[0].parent.parent.css('.small_currency_table_value')[0].text", sell_parsing_css:"css('img[title=\"Frank szwajcarski\"]')[0].parent.parent.css('.small_currency_table_value')[1].text")
 CurrencySite.create(site_id: dobry_kantor.id, currency_id: usd.id, buy_parsing_css:"css('img[title=\"Dolar amerykański\"]')[0].parent.parent.css('.small_currency_table_value')[0].text", sell_parsing_css:"css('img[title=\"Dolar amerykański\"]')[0].parent.parent.css('.small_currency_table_value')[1].text")
 CurrencySite.create(site_id: dobry_kantor.id, currency_id: gbp.id, buy_parsing_css:"css('img[title=\"Funt szterling\"]')[0].parent.parent.css('.small_currency_table_value')[0].text", sell_parsing_css:"css('img[title=\"Funt szterling\"]')[0].parent.parent.css('.small_currency_table_value')[1].text")
+
+# 
+puts ""

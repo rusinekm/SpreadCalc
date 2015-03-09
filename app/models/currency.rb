@@ -6,6 +6,14 @@ class Currency < ActiveRecord::Base
   has_many :sites, through: :currency_sites
   has_many :stat_nodes
 
+  def self.find_best_values
+    Currency.all.each do |currency| 
+      statnodes = currency.last_statistics
+      currency.find_average_value(statnodes)
+      currency.set_best_value(statnodes)
+    end
+  end
+  
   def last_best_buy_statnode
     StatNode.find(last_best_buy_statnode_id)
   end
@@ -59,9 +67,11 @@ class Currency < ActiveRecord::Base
     currency.id
   end
 
-  def destroy_if_empty
-    if currency_sites == []
-      self.destroy
+  def self.destroy_if_empty
+    Currency.all.each do |currency|
+      if currency.currency_sites = [] then
+      currency.destroy
+      end
     end
   end
 
