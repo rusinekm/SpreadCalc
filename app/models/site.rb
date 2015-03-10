@@ -1,6 +1,6 @@
 class Site < ActiveRecord::Base
   validates :name, :url, presence: true
-  validates :url, format: { with: /\A#{URI::regexp(['http', 'https'])}\z/}
+  validates :url, url: true
   
   before_destroy :destroy_currency_sites
 

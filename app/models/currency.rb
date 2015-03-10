@@ -23,16 +23,11 @@ class Currency < ActiveRecord::Base
   end
 
   def find_average_value(statnodes)
-    sum = 0
-    statnodes = StatNode.where(id: last_statistics)
-    statnodes.each do |node| 
-      sum += node.net_worth
-    end
     if statnodes.count > 0 then
-      self.average_value = sum / statnodes.count
+      self.average_value = StatNode.where(id:statnodes).sum(:net_worth) / statnodes.count
     else
       self.average_value = 0
-      end 
+    end 
     save
   end
 
