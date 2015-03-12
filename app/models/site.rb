@@ -2,7 +2,7 @@ class Site < ActiveRecord::Base
   validates :name, :url, presence: true
   validates :url, url: true
   
-  before_destroy :destroy_currency_sites
+  before_destroy :destroy_unnecessary_records
 
   has_many :currency_sites
   has_many :currencies, through: :currency_sites
@@ -38,7 +38,7 @@ class Site < ActiveRecord::Base
 
   private
 
-  def destroy_currency_sites
+  def destroy_unnecessary_records
     CurrencySite.delete_all(site_id: id)
     StatNode.delete_all(site_id: id)
     Currency.destroy_if_empty
