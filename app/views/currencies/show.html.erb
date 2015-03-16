@@ -1,4 +1,5 @@
 <h1>List of current <%= @currency.name %> exchange deals</h1> 
-<%=render 'currency_table', currency: @currency %>
-
+<span id="current_currency_wrapper"> 
+  <%=render 'currency_table', currency: @currency %>
+</span>
 <br>

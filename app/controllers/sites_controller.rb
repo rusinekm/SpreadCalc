@@ -1,10 +1,18 @@
 class SitesController < ApplicationController
   before_action :authenticate_admin!
+ 
   def index
     @sites = Site.all
+    if request.xhr?
+      render partial: 'sites_table', locals: {sites: @sites}
+    end
   end
+
   def new
     @site = Site.new
+    if request.xhr?
+      render partial: 'new_site_form', locals: {site: @site}
+    end
   end
 
   def create

@@ -3,6 +3,9 @@ class CurrencySitesController < ApplicationController
   
   def new
     @currency_site = CurrencySite.new
+    if request.xhr?
+      render partial: 'new_currency_site_form', locals: {currency_site: @currency_site}
+    end
   end
 
   def create

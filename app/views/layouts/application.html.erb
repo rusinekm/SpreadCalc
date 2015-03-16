@@ -15,7 +15,9 @@
     </header>
     <main role="main">
        <%= render 'layouts/messages' %>
-       <%= yield %>
+       <span id="page_content">
+        <%= yield %>
+       </span>
     </main>
   </body>
 </html>
