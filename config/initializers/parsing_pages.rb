@@ -11,10 +11,10 @@ background_currency_data_parsing = Thread.new do
     sleep (5.minutes - (Time.now - StatNode.last.created_at))
   end
   while true do
-    Thread.new do
+    # Thread.new do
       Site.parse_new_data
-      Thread.kill(self)
-    end
+    # Thread.kill(self)
+    # end
     sleep 5.minutes
   end
 end
@@ -28,10 +28,10 @@ destroying_old_stat_nodes = Thread.new do
     sleep (4 - Time.now.hour).hours
   end
   while true do
-    Thread.new do
+    # Thread.new do
       StatNode.delete_stat_nodes_older_than_day
-      Thread.kill(self)
-    end
+      # Thread.kill(self)
+    # end
     sleep 24.hours
   end
 end
