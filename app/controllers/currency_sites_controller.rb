@@ -9,7 +9,7 @@ class CurrencySitesController < ApplicationController
   end
 
   def create
-    currency_id = Currency.find_currency_id(currency_params[:currency_name].capitalize)
+    currency_id = Currency.find_currency_id(currency_params[:currency_name])
     unless CurrencySite.such_connection_exists?(currency_params[:site_id], currency_id)
       @currency_site = CurrencySite.new(currency_site_params, currency_id: currency_id)
       if @currency_site.save

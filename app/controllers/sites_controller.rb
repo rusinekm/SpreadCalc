@@ -24,6 +24,10 @@ class SitesController < ApplicationController
     end
   end
 
+  def show
+    redirect_to Site.find(params[:id]).url
+  end
+  
   def destroy
     Site.find(params[:id]).destroy
     redirect_to currencies_path, notice: 'Site is no longer watched.'     

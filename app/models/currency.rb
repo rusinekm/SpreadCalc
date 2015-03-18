@@ -15,13 +15,11 @@ class Currency < ActiveRecord::Base
   end
 
   def self.find_currency_id(currency_name)
-    currency = Currency.where(name:currency_name)
-    if currency then
-      currency.id
-    else
-    currency = Currency.create(name: currency_name)
-    currency.id
+    currency = Currency.where("lower(name) = ?", currency_name.downcase)
+    if currency == [] then
+      currency = Currency.create(name: currency_name)
     end
+    currency.id
   end
 
   def self.destroy_if_empty
@@ -69,8 +67,6 @@ class Currency < ActiveRecord::Base
     end
     save
   end
-
-  
 
   def current_buy_value_node(current_statistics)
     current_statistics.sort_by {|node| node.buy_value }.first
