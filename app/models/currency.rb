@@ -50,22 +50,18 @@ class Currency < ActiveRecord::Base
 
   def find_average_value(statnodes)
     if statnodes.count > 0 then
-      self.average_value = stat_nodes.sum(:net_worth) / statnodes.count
+      self.update(average_value: (statnodes.sum {|node| node.net_worth/statnodes.count}))
     else
-      self.average_value = 0
-    end 
-    save
+      self.update(average_value: 0)
+    end
   end
 
   def set_best_value(statnodes)
     if statnodes != [] then
-      self.last_best_buy_statnode_id = current_buy_value_node(statnodes).id
-      self.last_best_sell_statnode_id = current_sell_value_node(statnodes).id
+      self.update(last_best_buy_statnode_id: current_buy_value_node(statnodes).id, last_best_sell_statnode_id: current_sell_value_node(statnodes).id)
     else
-      self.last_best_buy_statnode_id = nil
-      self.last_best_sell_statnode_id = nil
+      self.update(last_best_buy_statnode_id: nil, last_best_sell_statnode_id: nil)
     end
-    save
   end
 
   def current_buy_value_node(current_statistics)
