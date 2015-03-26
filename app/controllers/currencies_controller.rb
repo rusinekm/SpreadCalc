@@ -13,10 +13,4 @@ class CurrenciesController < ApplicationController
       render partial: 'currency_table', locals: {currency: @currency}
     end
   end
-
-  private
-
-  def currency_params
-    params.require(:currency).permit(:name)
-  end
 end

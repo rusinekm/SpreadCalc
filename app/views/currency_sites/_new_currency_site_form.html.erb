@@ -2,7 +2,7 @@
   <%= form_for(currency_site) do |f| %>
   <% if currency_site.errors.any? %>
   <div id="error_explanation">
-  <h2><%= pluralize(@currency_site.errors.count, "error") %> prohibited this currency from being saved:</h2>
+    <h2><%= pluralize(@currency_site.errors.count, "error") %> prohibited this association from being saved:</h2>
     <ul>
       <% currency_site.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -10,14 +10,62 @@
     </ul>
   </div>
   <% end %>
-  <div class="field">
-    <%= f.label :site_id %>
-    <%= f.collection_select :site_id, Site.order(:id),:id,:name, include_blank: false %>
+
+  <% if currency_site.errors.any? %>
+  <div id="site_error_explanation">
+    <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+    <ul>
+      <% site.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
   </div>
-  <div class="field">
-    <%= f.label "Name of watched currency (please type full name instead of abbreviation)" %><br>
+  <% end %>
+
+  <% if currency_site.errors.any? %>
+  <div id="currency_error_explanation">
+    <h2><%= pluralize(@currency.errors.count, "error") %> prohibited this currency from being saved:</h2>
+    <ul>
+      <% currency.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="currency_site_site_collection">
+    <div class="field">
+      <%= f.label :site_id %>
+      <%= f.collection_select :site_id, Site.order(:id),:id,:name, include_blank: false %>
+    </div>
+  </div>
+  <div class="new_site_checkbox">
+    type a new site
+    <%= f.check_box :new_site %>
+  </div>
+  <div class="currency_site_site_form">
+    <div class="field">
+      <%= f.label "site_name"%><br>
+      <%= f.text_area :site_name %>
+    </div>
+    <div class="field">
+      <%= f.label "url" %><br>
+      <%= f.url_field :site_url %>
+    </div>
+  </div>
+  <div class="currency_site_currency_collection">
+    <div class="field">
+      <%= f.label :currency_id %>
+      <%= f.collection_select :currency_id, Currency.order(:id),:id,:name, include_blank: false %>
+    </div> 
+  </div>
+  <div class="new_currency_checkbox">
+    type a new currency
+    <%= f.check_box :new_currency %>
+  </div>
+  <div class="currency_site_currency_form">
+    <%= f.label "currency name" %><br>
     <%= f.text_area :currency_name %>
-  </div> 
+  </div>
   <div class="field">
     <%= f.label :buy_parsing_css %><br>
     <%= f.text_area :buy_parsing_css %>

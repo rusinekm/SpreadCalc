@@ -1,7 +1,7 @@
 require 'open-uri'
 class CurrencySite < ActiveRecord::Base
 
-  attr_accessor :currency_name
+  attr_accessor :currency_name, :site_name, :site_url, :new_site, :new_currency
 
   validates :site_id, :currency_id, :buy_parsing_css, :sell_parsing_css, presence: true
 

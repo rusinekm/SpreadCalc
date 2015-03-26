@@ -48,7 +48,7 @@ RSpec.describe Currency, type: :model do
       FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site1.id, sell_value: "3", buy_value: "1")
       FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site2.id, sell_value: "4", buy_value: "2")
       FactoryGirl.create(:stat_node, currency_id:currency.id, site_id:site3.id, sell_value: "5", buy_value: "3")
-      currency.find_average_value(currency.last_statistics)
+      currency.set_best_value(currency.last_statistics)
       expect(currency.average_value).to eq ((2+3+4)/3)
     end
     it "checking for validity of best buy and sell values" do
