@@ -2,8 +2,7 @@ class StatNode < ActiveRecord::Base
  
   validates :sell_value, :buy_value, presence: true
 
-  before_validation :check_if_sell_value_is_greater_than_buy_value, on: :create
-
+  before_create :is_sell_value_is_greater_than_buy_value?
   before_create :assign_spread_and_net_values
 
   belongs_to :site
@@ -23,7 +22,7 @@ class StatNode < ActiveRecord::Base
     end
   end
 
-  def check_if_sell_value_is_greater_than_buy_value
+  def is_sell_value_is_greater_than_buy_value?
     sell_value > buy_value
   end
 

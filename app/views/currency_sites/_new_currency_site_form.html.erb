@@ -11,7 +11,7 @@
   </div>
   <% end %>
 
-  <% if currency_site.errors.any? %>
+  <% if site.errors.any? %>
   <div id="site_error_explanation">
     <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
     <ul>
@@ -22,7 +22,7 @@
   </div>
   <% end %>
 
-  <% if currency_site.errors.any? %>
+  <% if currency.errors.any? %>
   <div id="currency_error_explanation">
     <h2><%= pluralize(@currency.errors.count, "error") %> prohibited this currency from being saved:</h2>
     <ul>

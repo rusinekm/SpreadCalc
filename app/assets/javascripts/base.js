@@ -1,8 +1,7 @@
 $(document).ready(function(){
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Method for faster redirecting pages using ajax
-////////////////////////////////////////////////////////////////////////////////////////////////////
+/* Method for faster redirecting pages using ajax
+*/
   $('.inside_link a').on('click',function(event){
     var url_name = $(this).attr('href')
     $.ajax({
@@ -18,9 +17,8 @@ $(document).ready(function(){
     });
     event.preventDefault();
   });
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Events for showing and hiding site and currency forms, for clearer viewing
-////////////////////////////////////////////////////////////////////////////////////////////////////
+/* Events for showing and hiding site and currency forms, for clearer viewing
+*/
   var site_checkbox_event = function() {
     $('.new_site_checkbox input[type=checkbox]').on("change", function(event) {
       var state = event.currentTarget;
@@ -46,9 +44,8 @@ $(document).ready(function(){
       };
     });
   };
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//  method for refreshing main and currency pages. It refreshes data on them every 5 minutes.
-////////////////////////////////////////////////////////////////////////////////////////////////////
+/*  Method for refreshing main and currency pages. It refreshes data on them every 5 minutes.
+*/
   var data_refreshing = function(){
     setInterval(function(){
       if ((!!window.location.pathname.match("/currencies")) || (!!(window.location.pathname === "/"))) {
@@ -56,15 +53,14 @@ $(document).ready(function(){
           url: document.URL,
           ifModified: true,
           success: function(data,status,xhr) {
-            if (status === "success") {
-              $('#table_wrapper').html(data);
-            }
+            $('#table_wrapper').html(data);
           }
         });
       }
     }, 300000);
   };
-////////////////////////////////////////////////////////////////////////////////////////////////////
+/* Main
+*/
   site_checkbox_event();
   currency_checkbox_event();
   data_refreshing();

@@ -11,43 +11,8 @@ class CurrencySitesController < ApplicationController
   end
 
   def create
-
-    puts params[:currency_site][:new_site] == "1"
-    puts params[:currency_site][:new_currency] == "1"
-
-
-    if params[:currency_site][:new_site] == "1"
-      @site = Site.new(name: params[:currency_site][:site_name], url: params[:currency_site][:site_url]) 
-      unless @site.save 
-        @currency_site = CurrencySite.new
-        flash[:alert] = @site.errors.full_messages.last
-        render :new
-        return
-      end
-    end
-
-    if params[:currency_site][:new_currency] == "1"
-      @currency = Currency.new(name: params[:currency_site][:currency_name]) 
-      unless @currency.save 
-        @currency_site = CurrencySite.new
-        flash[:alert] = @site.errors.full_messages.last
-        render :new
-        return
-      end
-    end
-
-    if params[:currency_site][:new_site] == "1"
-      site_id = @site.id
-    else
-      site_id = params[:currency_site][:site_id]
-    end
-
-    if params[:currency_site][:new_currency] == "1"
-      currency_id = @currency.id
-    else
-      currency_id = params[:currency_site][:currency_id]
-    end
-
+    site_id = getting_correct_site_id(params)
+    currency_id = getting_correct_currency_id(params)
     unless CurrencySite.such_connection_exists?(site_id, currency_id)
       @currency_site = CurrencySite.new(buy_parsing_css: params[:currency_site][:buy_parsing_css], sell_parsing_css: params[:currency_site][:sell_parsing_css], currency_id: currency_id, site_id: site_id)
       if @currency_site.save
@@ -69,5 +34,43 @@ class CurrencySitesController < ApplicationController
     Currency.destroy_if_empty
     Currency.find_best_values
     redirect_to currencies_path, notice: 'Currency is no longer watched on this site.'
+  end
+
+  private
+  
+  def getting_correct_site_id(params)
+     if params[:currency_site][:new_site] == "1"
+      @site = Site.new(name: params[:currency_site][:site_name], url: params[:currency_site][:site_url]) 
+      unless @site.save 
+        @currency_site = CurrencySite.new
+        flash[:alert] = @site.errors.full_messages.last
+        render :new
+        return
+      end
+      if @site
+        site_id = @site.id
+      else
+        site_id = params[:currency_site][:site_id]
+      end
+      site_id
+    end
+  end
+
+  def getting_correct_currency_id(params)
+    if params[:currency_site][:new_currency] == "1"
+      @currency = Currency.new(name: params[:currency_site][:currency_name]) 
+      unless @currency.save 
+        @currency_site = CurrencySite.new
+        flash[:alert] = @site.errors.full_messages.last
+        render :new
+        return
+      end
+    end
+    if @currency
+      currency_id = @currency.id
+    else
+      currency_id = params[:currency_site][:currency_id]
+    end
+    currency_id
   end
 end
